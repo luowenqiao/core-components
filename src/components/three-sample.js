@@ -99,6 +99,10 @@ let child = {
             type: "number",
             default: 1
         },
+        color: {
+            type: "string",
+            default: ""
+        },
         parameter1: {
             type: "string",
             default: ""
@@ -131,9 +135,9 @@ let child = {
 
         // our potentiall-shared object state (two roations and two colors for the boxes) 
         this.sharedData = {
-            color: new THREE.Color(randomColor()),
+            color: new THREE.Color(this.data.color.length > 0 ? this.data.color : "grey"),
             rotation: new THREE.Euler(),
-            position: new THREE.Vector3()
+            position: new THREE.Vector3(0,0.5,0)
         };
 
         // some local state
@@ -183,7 +187,7 @@ let child = {
             })
         );
         this.box2.matrixAutoUpdate = true;
-        this.box2.position.y += 0.5;
+        this.box2.position.copy(this.sharedData.position)
 
         // add it as a child of the first box, since we want it to move with the first box
         this.box.add(this.box2)
@@ -309,7 +313,7 @@ let child = {
                     // we hit the big box.  So first hide the small box, and then do a
                     // a hit test, which can only result in a hit on the big box.  
                     this.box2.visible = false
-                    let intersect = this.handleInteraction.getIntersection(this.handleInteraction.dragInteractor, [this.clickEvent.target])
+                    let intersect = this.handleInteraction.getIntersection(this.handleInteraction.dragInteractor, [this.box])
                     this.box2.visible = true
 
                     // if we hit the big box, move the small box to the position of the hit

@@ -3,6 +3,7 @@ tunnels:
     proto: http
     bind_tls: true
     addr: 6000
+    
     subdomain: jay-core
   vue-apps:
     proto: http
