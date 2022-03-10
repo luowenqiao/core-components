@@ -3,19 +3,22 @@ import { terser } from "rollup-plugin-terser";
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
 import rollupUrl from '@rollup/plugin-url';
+import commonjs from '@rollup/plugin-commonjs';
+
 
 var componentPath
 var serverPath
 if ((process.env.BUILD !== 'production')) {
-    componentPath = "https://jay-vue-apps.ngrok.io/vue-apps/";
-    serverPath = "https://jay-core.ngrok.io/build/";
+    componentPath = "https://blair-vue-apps.ngrok.io/vue-apps/";
+    serverPath = "https://blair-core.ngrok.io/build/";
 } else {
-    componentPath = "https://resources.realitymedia.digital/vue-apps/";
-    serverPath = "https://resources.realitymedia.digital/core-components/";
+    componentPath = "https://jdbolter.github.io/vue-apps/";
+    serverPath = "https://jdbolter.github.io/core-components/";
 }
 
 export default ['index', 'main-room'].map((name, index) => ({
     input: `src/rooms/${name}.ts`,
+    context: 'window',
     output: [{
         file: `./build/${name}.js`,
         format: 'es',
@@ -26,14 +29,14 @@ export default ['index', 'main-room'].map((name, index) => ({
         format: 'es',
         plugins: [terser()]
     }],
-    external: [ 
-        componentPath + "dist/hubs.js" ],
+    external: [ componentPath + "dist/hubs.js" ],
     plugins: [
+        commonjs(),
         nodeResolve(),
         replace({
             preventAssignment: true,
             'https://resources.realitymedia.digital/vue-apps/': componentPath //JSON.stringify( componentPath )
-        }),  
+        }), 
         typescript({
             typescript: require('typescript'),
         }),
