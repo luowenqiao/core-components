@@ -426,7 +426,7 @@ let child = {
             .forEach(function (p) {
                 if (p === "jsonUrl") {
  //                   elData[p] = "https://resources.realitymedia.digital/data/forcegraph/" + elData[p];
-                    elData[p] = "https://artnotart.org/jdbolter/force-data/current/" + elData[p];
+                    elData[p] = "https://jdbolter.github.io/graph-editor/graphs/" + elData[p];
                 }
 
                 comp.forceGraph[p](elData[p] !== '' ? elData[p] : null);
