@@ -20,6 +20,8 @@ AFRAME.registerComponent('show-hide', {
             this.el.object3D.visible = this.data.showClose;
         } else if (l > this.outerRadius) {
             this.el.object3D.visible = !this.data.showClose;
+        } else {
+            this.el.object3D.material.opacity = .5
         }
     }
 })
