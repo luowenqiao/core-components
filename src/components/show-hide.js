@@ -21,5 +21,8 @@ AFRAME.registerComponent('show-hide', {
         } else if (l > this.outerRadius) {
             this.el.object3D.visible = !this.data.showClose;
         } 
+        else{
+            this.el.object3DMap.mesh.material.opacity = .5
+        }
     }
 })
