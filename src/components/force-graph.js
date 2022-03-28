@@ -425,8 +425,7 @@ let child = {
             .filter(function (p) { return p in diff; })
             .forEach(function (p) {
                 if (p === "jsonUrl") {
- //                   elData[p] = "https://resources.realitymedia.digital/data/forcegraph/" + elData[p];
-                    elData[p] = "https://jdbolter.github.io/graph-editor/graphs/" + elData[p];
+                    elData[p] = "https://resources.realitymedia.digital/data/forcegraph/" + elData[p];
                 }
 
                 comp.forceGraph[p](elData[p] !== '' ? elData[p] : null);
