@@ -12,8 +12,8 @@ if ((process.env.BUILD !== 'production')) {
     componentPath = "https://blair-vue-apps.ngrok.io/vue-apps/";
     serverPath = "https://blair-core.ngrok.io/build/";
 } else {
-    componentPath = "https://jdbolter.github.io/vue-apps/";
-    serverPath = "https://jdbolter.github.io/core-components/";
+    componentPath = "https://luowenqiao.github.io/vue-apps/";
+    serverPath = "https://luowenqiao.github.io/core-components/";
 }
 
 export default ['index', 'main-room'].map((name, index) => ({
